@@ -1,0 +1,25 @@
+/* body {
+    height: 100vh;
+    background: linear-gradient(45deg, #eafa04, #0303b3);
+    block-size: 400% 400%;
+    animation: gradient 12s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+} */
+
+body {
+    background-image: url("/assets/img/a\ \(10\).gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
