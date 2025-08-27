@@ -117,7 +117,7 @@ body {
     .a6 {
         /* display: block; */
         margin-top: 9px;
-        margin-left: 0px ;
+        margin-left: 16px ;
         width: 200px;
         height: auto;
         border: 5px solid #68fa14;
@@ -129,7 +129,7 @@ body {
     }
     .a7 {
         /* display: block; */
-        margin-left: 16px ;
+        margin-left: 3px ;
         width: 200px;
         height: auto;
         border: 5px solid #68fa14;
@@ -178,7 +178,7 @@ body {
     .a11 {
         /* display: block; */
         margin-top: 9px;
-        margin-left: 0px ;
+        margin-left: 15px ;
         width: 200px;
         height: auto;
         border: 5px solid #68fa14;
@@ -193,7 +193,6 @@ body {
         margin-left: 16px ;
         width: 200px;
         height: auto;
-        border: 5px solid #68fa14;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s, box-shadow 0.3s;
@@ -202,21 +201,71 @@ body {
     }
     .a13 {
         /* display: block; */
-        margin-left: 16px ;
+        margin-top: 15px;
+        margin-left: 3px;
         width: 200px;
         height: auto;
-        border: 5px solid #68fa14;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s, box-shadow 0.3s;
         
         /* cursor: pointer; */
     }
+    .a14 {
+        /* display: block; */
+        margin-top: 10px;
+        margin-left: 15px;
+        width: 200px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        
+        /* cursor: pointer; */
+    }
+    .a15 {
+        /* display: block; */
+        margin-top: 15px;
+        margin-left: 15px;
+        width: 200px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        
+        /* cursor: pointer; */
+    }
+    .a16 {
+        /* display: block; */
+        margin-top: 15px;
+        margin-left: 15px;
+        width: 200px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        
+        /* cursor: pointer; */
+    }
+    .a17 {
+        /* display: block; */
+        margin-top: 15px;
+        margin-left: 15px;
+        width: 200px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        
+        /* cursor: pointer; */
+    }
+    
 
     
 }
 
 .footer {
+    
         text-align: center;
         font-size: 14px;
         color: white;

@@ -1,0 +1,19 @@
+body {
+    
+    background-image: url("../img/a\ \(87\).jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-family:gothic;
+    text-shadow: 2px 2px 4px #68fa14;
+    border: 13px;
+    position: absolute ;
+}
