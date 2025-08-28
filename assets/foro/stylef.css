@@ -23,3 +23,18 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
+
+a1 {
+        /* display: block; */
+        margin-left: 16px;
+        width: 200px;
+        height: auto;
+        border: 5px solid #68fa14;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        
+        /* cursor: pointer; */
+}
+    

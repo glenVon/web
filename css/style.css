@@ -40,229 +40,26 @@ body {
 }
 
 .contenedor {
-    display: inline-block;
-    margin-left: 1px;
-    margin-block: 80px;
-    margin-bottom: 12px;
+    margin-top: 70px;
+    margin-left: 16px;
+    height: auto;
+    border-radius: 10px;
     
-    .subtitulo {
-        text-align: center;
-        font-size: 30px;
-        color: rgb(35, 17, 194);
-        margin-top: 80px;
-        margin-bottom: 20px;
-        font-family:gothic;
-        text-shadow: 2px 2px 4px #faf603;
-    }
+/* Estilos base comunes para todas las imágenes */
+.a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, 
+.a9, .a10, .a11, .a12, .a13, .a14, .a15, 
+.a16, .a17 {
+    width: 200px;
+    height: auto;
+    border: 5px solid #020500;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 9px;
+    margin-left: 16px;
+}
+   
 
-    .a1 {
-        /* display: block; */
-        margin-left: 1000 auto;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a2 {
-        /* display: block; */
-        margin-left: 16px;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a3 {
-        /* display: block; */
-        margin-left: 16px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a4 {
-        /* display: block; */
-        margin-left: 16px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a5 {
-        /* display: block; */
-        margin-left: 16px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a6 {
-        /* display: block; */
-        margin-top: 9px;
-        margin-left: 16px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a7 {
-        /* display: block; */
-        margin-left: 3px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a8 {
-        /* display: block; */
-        margin-left: 16px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a9 {
-        /* display: block; */
-        margin-left: 16px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a10 {
-        /* display: block; */
-        margin-left: 16px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a11 {
-        /* display: block; */
-        margin-top: 9px;
-        margin-left: 15px ;
-        width: 200px;
-        height: auto;
-        border: 5px solid #68fa14;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a12 {
-        /* display: block; */
-        margin-left: 16px ;
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a13 {
-        /* display: block; */
-        margin-top: 15px;
-        margin-left: 3px;
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a14 {
-        /* display: block; */
-        margin-top: 10px;
-        margin-left: 15px;
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a15 {
-        /* display: block; */
-        margin-top: 15px;
-        margin-left: 15px;
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a16 {
-        /* display: block; */
-        margin-top: 15px;
-        margin-left: 15px;
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    .a17 {
-        /* display: block; */
-        margin-top: 15px;
-        margin-left: 15px;
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-        /* cursor: pointer; */
-    }
-    
-
-    
 }
 
 .footer {
@@ -275,7 +72,5 @@ body {
         font-family:gothic;
         text-shadow: 1px 1px 2px #000000;
     }
-
-
 
 
