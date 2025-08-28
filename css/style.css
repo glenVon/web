@@ -1,4 +1,5 @@
 body {
+    min-width: 100%;
     background-image: url("/20231228_125933.jpg");
     background-repeat: no-repeat;
     background-size: cover;
