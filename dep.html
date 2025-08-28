@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="/a (14).png" type="image/png">
+    <title>BENVENUTTY</title>
+    <style>
+        /* Estilos para las nuevas funcionalidades */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .user-menu {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+        
+        .user-options {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        
+        .user-options a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .user-menu:hover .user-options {
+            display: block;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+        }
+        
+        .cart-modal {
+            display: none;
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            width: 300px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .categorias {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .categoria-btn {
+            padding: 8px 15px;
+            background-color: #f1f1f1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .categoria-btn.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .producto-info {
+            display: none;
+            position: absolute;
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 100;
+            width: 200px;
+        }
+        
+        .producto:hover .producto-info {
+            display: block;
+        }
+        
+        .review-form {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        
+        .estrellas {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            text-align: center;
+        }
+        
+        .estrellas input {
+            display: none;
+        }
+        
+        .estrellas label {
+            color: #ccc;
+            cursor: pointer;
+            font-size: 30px;
+        }
+        
+        .estrellas input:checked ~ label {
+            color: #ffc107;
+        }
+        
+        .estrellas label:hover,
+        .estrellas label:hover ~ label {
+            color: #ffc107;
+        }
+        
+        .level-badge {
+            background-color: #4CAF50;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img class="ima" src="./assets/img/lo.png" width="80px" height="80px" alt="logo">        
+        <h1 class="titulo">MARVELER</h1>
+
+        <ul class="nav-links">
+            <input type="text" placeholder="Que buscay oe.." class="buscar" id="buscador">
+            <input type="submit" value="buscar" class="ir" onclick="buscarProductos()">
+
+            <a href="assets/biblioteca/biblioteca.html">
+                <button type="button">biblioteca</button>
+            </a>
+            <a href="assets/personajes/personajes.html">
+                <button type="button">personajes</button>
+            </a>
+            <a href="assets/foro/foro.html">
+                <button type="button">Foro</button>
+            </a>
+            <a href="assets/contacto/contacto.html">
+                <button type="button">Contacto</button>
+            </a>
+            
+            <!-- Icono de carrito -->
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 <span class="cart-count" id="cart-count">0</span>
+            </div>
+            
+            <!-- Menú de usuario -->
+            <div class="user-menu" id="user-menu" style="display:none;">
+                <span id="user-name">Usuario</span> <span class="level-badge" id="user-level">Nivel 1</span>
+                <div class="user-options">
+                    <a href="#" onclick="mostrarPerfil()">Mi Perfil</a>
+                    <a href="#" onclick="mostrarReferidos()">Mis Referidos</a>
+                    <a href="#" onclick="cerrarSesion()">Cerrar Sesión</a>
+                </div>
+            </div>
+            
+            <!-- Botones de registro/login -->
+            <div id="auth-buttons">
+                <button onclick="mostrarModal('login')">Iniciar Sesión</button>
+                <button onclick="mostrarModal('registro')">Registrarse</button>
+            </div>
+        </ul>
+    </nav>
+
+    <!-- Modal para login/registro -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('auth-modal')">&times;</span>
+            <div id="login-form">
+                <h2>Iniciar Sesión</h2>
+                <form onsubmit="iniciarSesion(event)">
+                    <input type="email" placeholder="Correo electrónico" required>
+                    <input type="password" placeholder="Contraseña" required>
+                    <button type="submit">Ingresar</button>
+                </form>
+                <p>¿No tienes cuenta? <a href="#" onclick="mostrarFormulario('registro')">Regístrate aquí</a></p>
+            </div>
+            <div id="registro-form" style="display:none;">
+                <h2>Registrarse</h2>
+                <form onsubmit="registrarUsuario(event)">
+                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="email" id="reg-email" placeholder="Correo electrónico" required onchange="verificarDescuento()">
+                    <input type="password" placeholder="Contraseña" required>
+                    <input type="date" id="fecha-nacimiento" required onchange="validarEdad()">
+                    <p id="edad-error" style="color:red; display:none;">Debes ser mayor de 18 años para registrarte.</p>
+                    <input type="text" id="codigo-referido" placeholder="Código de referido (opcional)">
+                    <div id="duoc-discount" style="color:green; display:none;">
+                        ¡Obtendrás un 20% de descuento permanente por ser estudiante Duoc!
+                    </div>
+                    <button type="submit" id="registro-btn">Registrarse</button>
+                </form>
+                <p>¿Ya tienes cuenta? <a href="#" onclick="mostrarFormulario('login')">Inicia sesión aquí</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de carrito -->
+    <div id="cart-modal" class="cart-modal">
+        <h3>Carrito de Compras</h3>
+        <div id="cart-items"></div>
+        <div id="cart-total">
+            <p>Total: $<span id="total-price">0</span></p>
+            <button onclick="realizarCompra()">Realizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Modal de perfil -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('profile-modal')">&times;</span>
+            <h2>Mi Perfil</h2>
+            <form onsubmit="actualizarPerfil(event)">
+                <input type="text" id="profile-name" placeholder="Nombre completo" required>
+                <input type="email" id="profile-email" placeholder="Correo electrónico" required>
+                <input type="tel" id="profile-phone" placeholder="Teléfono">
+                <input type="text" id="profile-address" placeholder="Dirección">
+                <h3>Preferencias de compra</h3>
+                <label><input type="checkbox" id="pref-ofertas"> Recibir notificaciones de ofertas</label>
+                <label><input type="checkbox" id="pref-novedades"> Recibir notificaciones de nuevos productos</label>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+            <div>
+                <h3>Mis Puntos LevelUp: <span id="user-points">0</span></h3>
+                <p>Nivel: <span id="profile-level">1</span></p>
+                <p>Tu código de referido: <strong id="referral-code"></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de referidos -->
+    <div id="referrals-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('referrals-modal')">&times;</span>
+            <h2>Programa de Referidos</h2>
+            <p>Comparte tu código con amigos y gana 100 puntos LevelUp por cada amigo que se registre.</p>
+            <p>Tu código: <strong id="user-referral-code"></strong></p>
+            <h3>Personas que has referido:</h3>
+            <ul id="referrals-list"></ul>
+        </div>
+    </div>
+
+    <!-- Filtros de categorías -->
+    <div class="categorias">
+        <button class="categoria-btn active" onclick="filtrarProductos('todos')">Todos</button>
+        <button class="categoria-btn" onclick="filtrarProductos('juegos-mesa')">Juegos de Mesa</button>
+        <button class="categoria-btn" onclick="filtrarProductos('accesorios')">Accesorios</button>
+        <button class="categoria-btn" onclick="filtrarProductos('consolas')">Consolas</button>
+        <button class="categoria-btn" onclick="filtrarProductos('computadores')">Computadores Gamers</button>
+        <button class="categoria-btn" onclick="filtrarProductos('sillas')">Sillas Gamers</button>
+        <button class="categoria-btn" onclick="filtrarProductos('mouse')">Mouse</button>
+        <button class="categoria-btn" onclick="filtrarProductos('mousepad')">Mousepad</button>
+        <button class="categoria-btn" onclick="filtrarProductos('poleras')">Poleras Personalizadas</button>
+        <button class="categoria-btn" onclick="filtrarProductos('polerones')">Polerones Gamers</button>
+        <button class="categoria-btn" onclick="filtrarProductos('servicio')">Servicio Técnico</button>
+    </div>
+
+    <div class="contenedor" id="productos-container">
+        <!-- Los productos se generarán dinámicamente con JavaScript -->
+    </div>
+
+    <footer class="footer">
+        <p>© 21/08/2025 MARVELER. Todos los derechos reservados Egon & Kenneth.</p>
+    </footer>
+    
+    <script>
+        // Datos de ejemplo para productos
+        const productos = [
+            { id: 1, nombre: "X-Men First Class", precio: 5.99, categoria: "comics", imagen: "./assets/comic/10012983/100080298/0.webp", enlace: "/assets/comic/x-men primera clase/X Men First Class 1.pdf" },
+            { id: 2, nombre: "Comic Marvel", precio: 4.99, categoria: "comics", imagen: "./assets/comic/10015153/100101322/3.webp", enlace: "/compra.html" },
+            { id: 3, nombre: "Superior Iron Man", precio: 6.99, categoria: "comics", imagen: "./assets/comic/10043731/cap1/0.jpg", enlace: "/assets/comic/10043731/superior irnman.html" },
+            { id: 4, nombre: "Juego de Mesa Avengers", precio: 39.99, categoria: "juegos-mesa", imagen: "./assets/covers/0006e93f62963735cf75b324bbccbf00e976ed2325127889.jpg", enlace: "/compra.html" },
+            { id: 5, nombre: "Astonishing X-Men", precio: 5.99, categoria: "comics", imagen: "./assets/covers/astonihing x-men 51.jpg", enlace: "/compra.html" },
+            { id: 6, nombre: "Consola PlayStation 5", precio: 499.99, categoria: "consolas", imagen: "./assets/covers/black panther 9.jpg", enlace: "/compra.html" },
+            { id: 7, nombre: "Silla Gamer Premium", precio: 299.99, categoria: "sillas", imagen: "./assets/covers/astonishing x-men 8.jpg", enlace: "/compra.html" },
+            { id: 8, nombre: "Mouse Gamer", precio: 49.99, categoria: "mouse", imagen: "./assets/covers/dark avengers 8 utopia.jpg", enlace: "/compra.html" },
+            { id: 9, nombre: "Polerón Gamer", precio: 39.99, categoria: "polerones", imagen: "./assets/covers/dark wolverine 75.jpg", enlace: "/compra.html" },
+            { id: 10, nombre: "Mousepad XL", precio: 19.99, categoria: "mousepad", imagen: "./assets/covers/astonishing x-men cajas fantasmas 1 de 2.jpg", enlace: "/compra.html" }
+        ];
+
+        // Variables globales
+        let usuarioActual = null;
+        let carrito = [];
+        let productosFiltrados = [...productos];
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarUsuario();
+            renderizarProductos();
+        });
+
+        // Funciones de autenticación
+        function mostrarModal(tipo) {
+            document.getElementById('auth-modal').style.display = 'block';
+            mostrarFormulario(tipo);
+        }
+
+        function cerrarModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function mostrarFormulario(tipo) {
+            if (tipo === 'login') {
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('registro-form').style.display = 'none';
+            } else {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('registro-form').style.display = 'block';
+            }
+        }
+
+        function validarEdad() {
+            const fechaNacimiento = new Date(document.getElementById('fecha-nacimiento').value);
+            const hoy = new Date();
+            const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+            const mes = hoy.getMonth() - fechaNacimiento.getMonth();
+            
+            const esMayor = edad > 18 || (edad === 18 && mes >= 0);
+            document.getElementById('edad-error').style.display = esMayor ? 'none' : 'block';
+            document.getElementById('registro-btn').disabled = !esMayor;
+            
+            return esMayor;
+        }
+
+        function verificarDescuento() {
+            const email = document.getElementById('reg-email').value;
+            const esDuoc = email.endsWith('@duoc.cl') || email.endsWith('@duocuc.cl');
+            document.getElementById('duoc-discount').style.display = esDuoc ? 'block' : 'none';
+            return esDuoc;
+        }
+
+        function registrarUsuario(event) {
+            event.preventDefault();
+            if (!validarEdad()) return;
+            
+            const email = document.getElementById('reg-email').value;
+            const nombre = event.target[0].value;
+            const codigoReferido = document.getElementById('codigo-referido').value;
+            const esDuoc = verificarDescuento();
+            
+            // Crear usuario
+            usuarioActual = {
+                nombre: nombre,
+                email: email,
+                duoc: esDuoc,
+                puntos: 0,
+                nivel: 1,
+                codigoReferido: generarCodigoReferido(),
+                referidos: []
+            };
+            
+            // Procesar código de referido si existe
+            if (codigoReferido) {
+                procesarReferido(codigoReferido);
+            }
+            
+            // Guardar usuario
+            guardarUsuario();
+            actualizarInterfazUsuario();
+            cerrarModal('auth-modal');
+            
+            alert('¡Registro exitoso! ' + (esDuoc ? 'Tienes un 20% de descuento permanente.' : ''));
+        }
+
+        function iniciarSesion(event) {
+            event.preventDefault();
+            const email = event.target[0].value;
+            
+            // Simulación de inicio de sesión
+            usuarioActual = {
+                nombre: "Usuario Ejemplo",
+                email: email,
+                duoc: email.endsWith('@duoc.cl') || email.endsWith('@duocuc.cl'),
+                puntos: 150,
+                nivel: 2,
+                codigoReferido: "MARVEL123",
+                referidos: ["amigo1@ejemplo.com", "amigo2@ejemplo.com"]
+            };
+            
+            guardarUsuario();
+            actualizarInterfazUsuario();
+            cerrarModal('auth-modal');
+        }
+
+        function cerrarSesion() {
+            usuarioActual = null;
+            localStorage.removeItem('usuarioActual');
+            actualizarInterfazUsuario();
+        }
+
+        function cargarUsuario() {
+            const usuarioGuardado = localStorage.getItem('usuarioActual');
+            if (usuarioGuardado) {
+                usuarioActual = JSON.parse(usuarioGuardado);
+                actualizarInterfazUsuario();
+            }
+        }
+
+        function guardarUsuario() {
+            localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
+        }
+
+        function actualizarInterfazUsuario() {
+            if (usuarioActual) {
+                document.getElementById('auth-buttons').style.display = 'none';
+                document.getElementById('user-menu').style.display = 'inline-block';
+                document.getElementById('user-name').textContent = usuarioActual.nombre;
+                document.getElementById('user-level').textContent = `Nivel ${usuarioActual.nivel}`;
+            } else {
+                document.getElementById('auth-buttons').style.display = 'block';
+                document.getElementById('user-menu').style.display = 'none';
+            }
+        }
+
+        function generarCodigoReferido() {
+            return 'MARVEL' + Math.floor(100 + Math.random() * 900);
+        }
+
+        function procesarReferido(codigo) {
+            // En una implementación real, esto se conectaría a una base de datos
+            console.log(`Procesando referido con código: ${codigo}`);
+            // Aquí se agregarían puntos al usuario que refirió
+        }
+
+        // Funciones de perfil
+        function mostrarPerfil() {
+            if (!usuarioActual) return;
+            
+            document.getElementById('profile-name').value = usuarioActual.nombre;
+            document.getElementById('profile-email').value = usuarioActual.email;
+            document.getElementById('user-points').textContent = usuarioActual.puntos;
+            document.getElementById('profile-level').textContent = usuarioActual.nivel;
+            document.getElementById('referral-code').textContent = usuarioActual.codigoReferido;
+            
+            document.getElementById('profile-modal').style.display = 'block';
+        }
+
+        function actualizarPerfil(event) {
+            event.preventDefault();
+            usuarioActual.nombre = document.getElementById('profile-name').value;
+            usuarioActual.email = document.getElementById('profile-email').value;
+            guardarUsuario();
+            actualizarInterfazUsuario();
+            cerrarModal('profile-modal');
+            alert('Perfil actualizado correctamente');
+        }
+
+        function mostrarReferidos() {
+            if (!usuarioActual) return;
+            
+            document.getElementById('user-referral-code').textContent = usuarioActual.codigoReferido;
+            
+            const referralsList = document.getElementById('referrals-list');
+            referralsList.innerHTML = '';
+            
+            if (usuarioActual.referidos && usuarioActual.referidos.length > 0) {
+                usuarioActual.referidos.forEach(referido => {
+                    const li = document.createElement('li');
+                    li.textContent = referido;
+                    referralsList.appendChild(li);
+                });
+            } else {
+                referralsList.innerHTML = '<li>No has referido a nadie todavía.</li>';
+            }
+            
+            document.getElementById('referrals-modal').style.display = 'block';
+        }
+
+        // Funciones de productos y carrito
+        function renderizarProductos() {
+            const container = document.getElementById('productos-container');
+            container.innerHTML = '';
+            
+            productosFiltrados.forEach(producto => {
+                const productoElement = document.createElement('div');
+                productoElement.className = 'producto';
+                productoElement.innerHTML = `
+                    <a href="${producto.enlace}">
+                        <img class="a${producto.id}" src="${producto.imagen}" alt="${producto.nombre}">
+                    </a>
+                    <div class="producto-info">
+                        <h4>${producto.nombre}</h4>
+                        <p>Precio: $${producto.precio}</p>
+                        <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+                    </div>
+                `;
+                container.appendChild(productoElement);
+            });
+        }
+
+        function filtrarProductos(categoria) {
+            // Actualizar botones activos
+            document.querySelectorAll('.categoria-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filtrar productos
+            if (categoria === 'todos') {
+                productosFiltrados = [...productos];
+            } else {
+                productosFiltrados = productos.filter(p => p.categoria === categoria);
+            }
+            
+            renderizarProductos();
+        }
+
+        function buscarProductos() {
+            const termino = document.getElementById('buscador').value.toLowerCase();
+            productosFiltrados = productos.filter(p => 
+                p.nombre.toLowerCase().includes(termino) || 
+                p.categoria.toLowerCase().includes(termino)
+            );
+            renderizarProductos();
+        }
+
+        function agregarAlCarrito(idProducto) {
+            if (!usuarioActual) {
+                alert('Debes iniciar sesión para agregar productos al carrito');
+                mostrarModal('login');
+                return;
+            }
+            
+            const producto = productos.find(p => p.id === idProducto);
+            const existente = carrito.find(item => item.id === idProducto);
+            
+            if (existente) {
+                existente.cantidad++;
+            } else {
+                carrito.push({...producto, cantidad: 1});
+            }
+            
+            actualizarCarrito();
+            alert(`¡${producto.nombre} agregado al carrito!`);
+        }
+
+        function actualizarCarrito() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const totalPrice = document.getElementById('total-price');
+            
+            // Actualizar contador
+            cartCount.textContent = carrito.reduce((total, item) => total + item.cantidad, 0);
+            
+            // Actualizar items del carrito
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            carrito.forEach(item => {
+                const itemTotal = item.precio * item.cantidad;
+                total += itemTotal;
+                
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <p>${item.nombre} x${item.cantidad} - $${itemTotal.toFixed(2)}</p>
+                    <button onclick="modificarCantidad(${item.id}, ${item.cantidad - 1})">-</button>
+                    <button onclick="modificarCantidad(${item.id}, ${item.cantidad + 1})">+</button>
+                    <button onclick="eliminarDelCarrito(${item.id})">Eliminar</button>
+                `;
+                cartItems.appendChild(div);
+            });
+            
+            // Aplicar descuento si es usuario Duoc
+            if (usuarioActual && usuarioActual.duoc) {
+                total = total * 0.8; // 20% de descuento
+                const descuentoDiv = document.createElement('div');
+                descuentoDiv.innerHTML = `<p style="color: green;">Descuento Duoc (20%): aplicado</p>`;
+                cartItems.appendChild(descuentoDiv);
+            }
+            
+            // Actualizar precio total
+            totalPrice.textContent = total.toFixed(2);
+        }
+
+        function modificarCantidad(idProducto, nuevaCantidad) {
+            if (nuevaCantidad < 1) {
+                eliminarDelCarrito(idProducto);
+                return;
+            }
+            
+            const item = carrito.find(item => item.id === idProducto);
+            if (item) {
+                item.cantidad = nuevaCantidad;
+                actualizarCarrito();
+            }
+        }
+
+        function eliminarDelCarrito(idProducto) {
+            carrito = carrito.filter(item => item.id !== idProducto);
+            actualizarCarrito();
+        }
+
+        function toggleCart() {
+            if (!usuarioActual) {
+                alert('Debes iniciar sesión para ver el carrito');
+                mostrarModal('login');
+                return;
+            }
+            
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function realizarCompra() {
+            if (carrito.length === 0) {
+                alert('El carrito está vacío');
+                return;
+            }
+            
+            // Calcular total con descuento si aplica
+            let total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+            if (usuarioActual.duoc) {
+                total = total * 0.8;
+            }
+            
+            // Simular proceso de compra
+            alert(`¡Compra realizada por $${total.toFixed(2)}! Gracias por tu compra.`);
+            
+            // Añadir puntos por compra
+            const puntosGanados = Math.floor(total);
+            usuarioActual.puntos += puntosGanados;
+            
+            // Subir de nivel cada 100 puntos
+            usuarioActual.nivel = Math.floor(usuarioActual.puntos / 100) + 1;
+            
+            guardarUsuario();
+            actualizarInterfazUsuario();
+            
+            // Vaciar carrito
+            carrito = [];
+            actualizarCarrito();
+            document.getElementById('cart-modal').style.display = 'none';
+            
+            // Mostrar modal de reseña
+            setTimeout(() => {
+                if (confirm('¿Deseas calificar los productos comprados?')) {
+                    alert('Funcionalidad de reseñas en desarrollo...');
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
