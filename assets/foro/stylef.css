@@ -18,10 +18,24 @@
 } */
 
 body {
-    background-image: url("/assets/img/a\ \(10\).gif");
+    max-width: 100%;
+    background-image: url("/assets/img/a\ \(174\).jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    
+    
+}
+
+.titulo {
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    text-shadow: 0 2px rgb(252, 248, 48);
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-family:gothic;
+    position: absolute ;
 }
 
 
