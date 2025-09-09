@@ -5,6 +5,16 @@ const popup = document.getElementById('miPopup');
 const botonAbrir = document.getElementById('abrirPopup');
 const botonCerrar = document.querySelector('.cerrarPopup');
 
+// // Función para abrir el popup
+// function abrirPopup() {
+//     popup.classList.add('active');
+// }
+
+// // Función para cerrar el popup
+// function cerrarPopup() {
+//     popup.classList.remove('active');
+// }
+
 // Función para abrir el popup
 function abrirPopup() {
     popup.style.display = 'flex'; // Cambia a 'flex' para centrar con el CSS
