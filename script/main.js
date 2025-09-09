@@ -186,7 +186,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listener para el envío del formulario
     formulario.addEventListener('submit', function(e) {
-        e.preventDefault();
+        alert('¡Formulario enviado correctamente!');
+        formulario.reset(); 
+        // e.preventDefault();
         
         // Ejecutar todas las validaciones
         const esValido = [
