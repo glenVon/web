@@ -1,4 +1,4 @@
-alert("  BENBENUTTY  ");
+alert(" un proyecto credo por kenneth, victor y egon para usted  ");
 
 // Obtener elementos del DOM
 const popup = document.getElementById('miPopup');
@@ -195,11 +195,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('confirmPassword').addEventListener('blur', validarConfirmPassword);
 
     // Event listener para el envío del formulario
-    formulario.addEventListener('submit', function(e) {
-        alert('¡Formulario enviado correctamente!');
-        formulario.reset(); 
-        // e.preventDefault();
-        
+    miFormulario.addEventListener('submit', function(e) { 
+        e.preventDefault();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const formulario = document.getElementById('miFormulario');
+        });
         // Ejecutar todas las validaciones
         const esValido = [
             validarNombre(),
@@ -210,17 +211,22 @@ document.addEventListener('DOMContentLoaded', function() {
         ].every(result => result === true);
         
         if (esValido) {
-            // Aquí puedes enviar el formulario o procesar los datos
-            // alert('¡Formulario enviado correctamente!');
-            // formulario.reset();
+            //Aquí puedes enviar el formulario o procesar los datos
+            alert('¡Formulario enviado correctamente mi bro!');
+            miFormulario.reset();
             
             // Limpiar todas las clases de éxito
             document.querySelectorAll('input').forEach(input => {
                 input.classList.remove('success-input');
+
+            
             });
         } else {
             alert('Por favor, corrige los errores en el formulario');
         }
+        
+
+        
     });
 
     // Limpiar errores al escribir
