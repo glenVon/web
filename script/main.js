@@ -199,8 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (esValido) {
             // Aquí puedes enviar el formulario o procesar los datos
-            alert('¡Formulario enviado correctamente!');
-            formulario.reset();
+            // alert('¡Formulario enviado correctamente!');
+            // formulario.reset();
             
             // Limpiar todas las clases de éxito
             document.querySelectorAll('input').forEach(input => {
